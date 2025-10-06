@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Last Mile Delivery Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Top Navigation -->
+    <div class="top-nav">
+      <div class="nav-left">
+        <div class="logo">
+          <span class="logo-icon">🚚</span>
+          <span class="logo-text">Last Mile Dashboard</span>
+        </div>
+      </div>
+      <div class="nav-right">
+        <button id="dark-mode-toggle" class="btn btn--outline">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-nav">
+          <button class="nav-item active" data-section="dashboard-section">Dashboard</button>
+          <button class="nav-item" data-section="route-planner-section">Route Planner</button>
+          <button class="nav-item" data-section="fleet-management-section">Fleet Management</button>
+          <button class="nav-item" data-section="orders-section">Order Management</button>
+          <button class="nav-item" data-section="analytics-section">Analytics</button>
+          <button class="nav-item" data-section="settings-section">Settings</button>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section active">
+          <div class="section-header">
+            <h2>Dashboard</h2>
+            <p>Delivery metrics and insights</p>
+          </div>
+          <div class="metrics-grid" id="dashboard-metrics"></div>
+          <div class="dashboard-grid">
+            <div class="dashboard-card">
+              <div class="card-header">
+                <h3>Performance Chart</h3>
+              </div>
+              <div class="card-content">
+                <canvas id="performance-chart"></canvas>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="card-header">
+                <h3>Live Vehicle Map</h3>
+              </div>
+              <div class="card-content">
+                <div id="live-map" class="map-container large"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Route Planner Section -->
+        <section id="route-planner-section" class="content-section">
+          <div class="section-header">
+            <h2>Route Planner</h2>
+            <p>Optimize delivery routes for efficiency</p>
+          </div>
+          <div class="route-planner-grid">
+            <div class="route-config-panel">
+              <div class="panel-header">Route Configuration</div>
+              <div class="panel-content">
+                <label for="algorithm-select">Algorithm:</label>
+                <select id="algorithm-select" class="form-control">
+                  <option value="clarke-wright">Clarke-Wright</option>
+                  <option value="genetic">Genetic</option>
+                  <option value="ant-colony">Ant Colony</option>
+                </select>
+                <button id="optimize-routes-btn" class="btn btn--primary mt-4">Optimize Routes</button>
+              </div>
+            </div>
+            <div class="route-visualization" id="route-map"></div>
+          </div>
+          <div class="optimization-results" id="optimization-results"></div>
+        </section>
+
+        <!-- Fleet Management Section -->
+        <section id="fleet-management-section" class="content-section">
+          <div class="section-header">
+            <h2>Fleet Management</h2>
+            <p>Status of all delivery vehicles</p>
+          </div>
+          <div id="fleet-status-list"></div>
+        </section>
+
+        <!-- Order Management Section -->
+        <section id="orders-section" class="content-section">
+          <div class="section-header">
+            <h2>Order Management</h2>
+            <p>Recent orders placed</p>
+          </div>
+          <div id="recent-orders-list"></div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics-section" class="content-section">
+          <div class="section-header">
+            <h2>Analytics</h2>
+            <p>KPIs and trends</p>
+          </div>
+          <div class="dashboard-grid">
+            <div class="dashboard-card">
+              <div class="card-header"><h3>Orders Trend</h3></div>
+              <div class="card-content"><canvas id="orders-trend-chart"></canvas></div>
+            </div>
+            <div class="dashboard-card">
+              <div class="card-header"><h3>Fleet Usage</h3></div>
+              <div class="card-content"><canvas id="fleet-usage-chart"></canvas></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings-section" class="content-section">
+          <div class="section-header">
+            <h2>Settings</h2>
+            <p>Customize your dashboard</p>
+          </div>
+          <div class="settings-grid">
+            <label>
+              <input type="checkbox" id="toggle-dark-mode"> Enable Dark Mode
+            </label>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
